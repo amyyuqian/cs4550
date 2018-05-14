@@ -1,4 +1,4 @@
-package webdev.models;
+package com.example.webdev.models;
 
 import java.sql.Date;
 

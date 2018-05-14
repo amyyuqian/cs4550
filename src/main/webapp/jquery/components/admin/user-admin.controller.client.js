@@ -22,10 +22,11 @@
     $removeBtn = $('#wbdv-remove');
     $removeBtn.click(deleteUser);
 
-    userService.findAllUsers(renderUsers);
+    findAllUsers();
    }
 
   function createUser() {
+    console.log('foo');
     var user = {
       username: $usernameFld.val(),
       password: $passwordFld.val(),
@@ -38,7 +39,7 @@
   }
 
   function findAllUsers() {
-    userService.findAllUsers(renderUsers);
+    userService.findAllUsers().then(renderUsers);
   }
 
   function findUserById() {
@@ -65,5 +66,6 @@
       $row.find('.wbdv-username').html(user.username);
       $row.find('.wbdv-id').html(user.id);
       $tbody.append($row);
+    }
   }
 })();
