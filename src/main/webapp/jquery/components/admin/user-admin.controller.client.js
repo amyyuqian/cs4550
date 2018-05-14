@@ -26,16 +26,13 @@
    }
 
   function createUser() {
-    console.log('foo');
     var user = {
       username: $usernameFld.val(),
       password: $passwordFld.val(),
       firstName: $firstNameFld.val(),
       lastName: $lastNameFld.val(),
-      role: $roleFld.val(),
     }
-    userService.createUser(user);
-    findAllUsers();
+    userService.createUser(user).then(findAllUsers);
   }
 
   function findAllUsers() {
