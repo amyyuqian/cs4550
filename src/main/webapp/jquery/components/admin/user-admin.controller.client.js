@@ -38,8 +38,12 @@
   }
 
   function findUserById() {
-    var id = $('');
+    var btn = $(event.currentTarget);
+    var userId = btn.parent().attr('id');
+
+    userService.findUserById(userId);
   }
+
   function deleteUser() {
     var deleteBtn = $(event.currentTarget);
     var userId = deleteBtn
@@ -50,25 +54,29 @@
         .deleteUser(userId)
         .then(findAllUsers);
   }
-  function selectUser() {
 
-  }
   function updateUser() {
     var userId = $('#edit-user-modal').attr('user-id');
 
     var user = {
+      id: userId,
       username: $('#editUsernameFld').val(),
       firstName: $('#editFirstNameFld').val(),
       lastName: $('#editLastNameFld').val(),
       role: $('#editRoleFld').val(),
     }
 
-    userService.updateUser(userId, user).then(findAllUsers);
-
-
+    userService.updateUser(userId, user).then(renderUser(user));
   }
+  
   function renderUser(user) {
-
+    var $row = $('#' + user.id);
+    
+    $row.find('.wbdv-username').html(user.username);
+    $row.find('.wbdv-password').html(user.password);
+    $row.find('.wbdv-first-name').html(user.firstName);
+    $row.find('.wbdv-last-name').html(user.lastName);
+    $row.find('.wbdv-role').html(user.role);
   }
 
   function renderUsers(users) {
