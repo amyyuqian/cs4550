@@ -34,13 +34,6 @@ function AdminUserServiceClient() {
         'content-type': 'application/json'
       }
     })
-    .then(function(response){
-        if(response.bodyUsed) {
-            return response.json();
-        } else {
-            return null;
-        }
-    });
   }
   function deleteUser(userId) {
     return fetch(

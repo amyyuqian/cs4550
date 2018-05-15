@@ -8,8 +8,8 @@
 	<link rel="stylesheet" href=
 	  "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link href="user-admin.style.client.css" rel="stylesheet" />
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="../../models/user.model.client.js"></script>
 	<script src="../../services/user.service.client.js"></script>
 	<script src="user-admin.controller.client.js"></script>
@@ -29,43 +29,83 @@
 					<th>&nbsp;</th>
 		    </tr>
 		    <tr class="wbdv-form">
-			  <td><input id="usernameFld" class="form-control"
-			    placeholder="Username" /></td>
-			  <td><input id="passwordFld" class="form-control"
-			    placeholder="Password" /></td>
-			  <td><input id="firstNameFld" class="form-control"
-			    placeholder="First Name" /></td>
-			  <td><input id="lastNameFld" class="form-control"
-			    placeholder="Last Name" /></td>
-			  <td>
-			  	<select id="roleFld" class="form-control">
-			      <option value="FACULTY">Faculty</option>
-			      <option value="STUDENT">Student</option>
-			  	</select>
-				</td>
-				<td></td>
-			  <td>
-			  	<span class="float-right" style="white-space: nowrap">
-						<i class="fa-2x fa fa-plus wbdv-create"></i>
-			  	</span>
-			  </td>
-			</tr>
-		</thead>
-		<tbody class="wbdv-tbody">
-		    <tr class="wbdv-template wbdv-user wbdv-hidden" >
-		      <td class="wbdv-username">ada</td>
-		      <td>&nbsp;</td>
-		      <td class="wbdv-first-name">Ada</td>
-		      <td class="wbdv-last-name">Lovelace</td>
-					<td class="wbdv-role">FACULTY</td>
-					<td class="wbdv-remove">
-						<i class="fa-2x fa fa-times icon"></i>
+					<td><input id="usernameFld" class="form-control"
+						placeholder="Username" /></td>
+					<td><input id="passwordFld" class="form-control"
+						placeholder="Password" /></td>
+					<td><input id="firstNameFld" class="form-control"
+						placeholder="First Name" /></td>
+					<td><input id="lastNameFld" class="form-control"
+						placeholder="Last Name" /></td>
+					<td>
+						<select id="roleFld" class="form-control">
+							<option value="FACULTY">Faculty</option>
+							<option value="STUDENT">Student</option>
+						</select>
 					</td>
-					<td class="wbdv-edit">
-						<i class="fa-2x fa fa-pencil icon"></i>
+					<td></td>
+					<td>
+						<span class="float-right" style="white-space: nowrap">
+							<i class="fa-2x fa fa-plus wbdv-create"></i>
+						</span>
 					</td>
-		   </tr>
-		 </tbody>
+				</tr>
+			</thead>
+			<tbody class="wbdv-tbody">
+					<tr class="wbdv-template wbdv-user wbdv-hidden" >
+						<td class="wbdv-username"></td>
+						<td>&nbsp;</td>
+						<td class="wbdv-first-name"></td>
+						<td class="wbdv-last-name"></td>
+						<td class="wbdv-role"></td>
+						<td class="wbdv-remove">
+							<i class="fa-2x fa fa-times icon"></i>
+						</td>
+						<td class="wbdv-edit" data-toggle="modal" data-target="#edit-user-modal">
+							<i class="fa-2x fa fa-pencil icon"></i>
+						</td>
+				</tr>
+			</tbody>
 		</table>
+
+		<div id="edit-user-modal" user-id="" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Edit User</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="edit-user-form">
+							<div class="form-group">
+								<label for="formGroupExampleInput">Username</label>
+								<input type="text" class="form-control" id="editUsernameFld" placeholder="Username">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">First Name</label>
+								<input type="text" class="form-control" id="editFirstNameFld" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Last Name</label>
+								<input type="text" class="form-control" id="editLastNameFld" placeholder="Password">
+							</div>
+							<div class="form-group">
+									<label for="formGroupExampleInput2">Role</label>
+								<select id="editRoleFld" class="form-control">
+									<option value="FACULTY">Faculty</option>
+									<option value="STUDENT">Student</option>
+								</select>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="submit-edit-user" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
