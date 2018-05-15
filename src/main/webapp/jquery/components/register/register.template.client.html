@@ -1,10 +1,11 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+  	<link href="register.style.client.css" rel="stylesheet" />
   </head>
 
-  <body>
-    <h1>Register</h1>
+  <body class="centered">
+    <h1 class="col-md-6">Register</h1>
     <form>
       <div class="form-group col-md-4">
         <label for="usernameFld">Username</label>
@@ -18,7 +19,9 @@
         <label for="verifyPasswordFld">Verify Password</label>
         <input type="password" class="form-control" id="verifyPasswordFld" placeholder="Verify Password">
       </div>
-      <button type="submit" id="registerBtn" class="btn btn-primary">Register</button>
+      <div class="form-group col-md-4">
+        <button type="submit" id="registerBtn" class="btn btn-primary">Register</button>
+      </div>
     </form>
   </body>
 </html>
