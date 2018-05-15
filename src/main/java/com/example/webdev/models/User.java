@@ -14,6 +14,9 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String role;
+	private String phone;
+	private String email;
+	private String dateOfBirth;
 
 	public int getId() {
 		return id;
@@ -51,4 +54,23 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	
 }

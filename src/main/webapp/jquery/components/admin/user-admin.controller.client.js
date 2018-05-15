@@ -1,6 +1,6 @@
 (function () {
   var $usernameFld, $passwordFld;
-  var $removeBtn, $editBtn, $createBtn;
+  var $createBtn;
   var $firstNameFld, $lastNameFld, $roleFld;
   var $userRowTemplate, $tbody;
   var userService = new AdminUserServiceClient();
@@ -17,10 +17,6 @@
 
     $createBtn = $('.wbdv-create');
     $createBtn.click(createUser);
-    $editBtn = $('#wbdv-edit');
-    $editBtn.click(updateUser);
-    $removeBtn = $('#wbdv-remove');
-    $removeBtn.click(deleteUser);
 
     findAllUsers();
    }
@@ -43,7 +39,15 @@
     var id = $('');
   }
   function deleteUser() {
+    console.log('fo');
+    var deleteBtn = $(event.currentTarget);
+    var userId = deleteBtn
+        .parent()
+        .attr('id');
 
+    userService
+        .deleteUser(userId)
+        .then(findAllUsers);
   }
   function selectUser() {
 
@@ -61,7 +65,10 @@
       var user = users[u];
       var $row = $userRowTemplate.clone();
       $row.find('.wbdv-username').html(user.username);
-      $row.find('.wbdv-id').html(user.id);
+      $row.attr('id', user.id);
+
+      $row.find('.wbdv-remove').click(deleteUser);
+      $row.find('.wbdv-edit').click(updateUser);
       $tbody.append($row);
     }
   }
