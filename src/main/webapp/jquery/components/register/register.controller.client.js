@@ -1,24 +1,26 @@
 (function () {
   var $usernameFld, $passwordFld, $verifyPasswordFld;
   var $registerBtn;
-  var userService = new UserService();
+  var userService = new AdminUserServiceClient();
   $(main);
 
   function main() {
-    $usernameFld = $('usernameFld').val();
-    $passwordFld = $('passwordFld').val();
-    $verifyPasswordFld = $('verifyPasswordFld').val();
+    $usernameFld = $('#usernameFld')
+    $passwordFld = $('#passwordFld')
+    $verifyPasswordFld = $('#verifyPasswordFld')
+    $registerBtn = $('#registerBtn');
 
     $registerBtn.click(register);
   }
   function register() {
-    if ($passwordFld != $verifyPasswordFld) {
-      $('#invalid-password').show();
+    $('.invalid-feedback').hide();
+    if ($passwordFld.val() != $verifyPasswordFld.val()) {
+      $('.invalid-feedback').show();
     }
 
     var user = {
-      username: $passwordFld,
-      password: $passwordFld
+      username: $passwordFld.val(),
+      password: $passwordFld.val()
     }
 
     userService.register(user);

@@ -4,9 +4,14 @@ function AdminUserServiceClient() {
   this.findUserById = findUserById;
   this.deleteUser = deleteUser;
   this.updateUser = updateUser;
+  this.register = register;
   this.url = 'http://localhost:8080/api/user';
   var self = this;
 
+  function register(user) {
+    createUser(user);
+  }
+  
   function createUser(user) {
     return fetch(self.url, {
       method: 'POST',
