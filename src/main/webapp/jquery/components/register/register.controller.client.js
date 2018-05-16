@@ -19,7 +19,7 @@
 
     $('#invalid-password').hide();
     $('#invalid-username').hide();
-    $('#invalid-verfy').hide();
+    $('#invalid-verify').hide();
 
     if (username == null || username == "") {
       $('#invalid-username').html("Please enter a username");
@@ -35,7 +35,14 @@
       $('#invalid-verify').show();
     }
 
+    if (username == null || username == ""
+      || password == null || password == ""
+      || verifiedPassword == null || verifiedPassword == "") {
+        return;
+      }
+
     if (password != verifiedPassword) {
+      $('#invalid-password').html("Passwords do not match");
       $('#invalid-password').show();
       return;
     }
