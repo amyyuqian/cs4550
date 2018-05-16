@@ -33,8 +33,12 @@ public class UserService {
 	}
 	
 	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user) {
-		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+	public User login(@RequestBody User user, HttpSession session) {
+		Optional<User> data = repository.findUserByCredentials(user.getUsername(), user.getPassword());
+		if (data.isPresent()) {
+			session.setAttribute("user", user.getUsername());
+		}
+		return data.get();
 	}
 	
 	@GetMapping("/api/user")
@@ -58,10 +62,10 @@ public class UserService {
 	}
 	
 	@GetMapping("/api/username/{username}")
-	public User findUserByUsername(@PathVariable("username")String username, HttpServletResponse response) {
+	public User findUserByUsername(@PathVariable("username")String username) {
 		Optional<User> data = repository.findUserByUsername(username);
 		if(data.isPresent()) {
-			response.setStatus(HttpServletResponse.SC_CONFLICT);
+			return data.get();
 		}
 		return null;
 	}
