@@ -6,8 +6,10 @@ function AdminUserServiceClient() {
   this.updateUser = updateUser;
   this.register = register;
   this.findUserByUsername = findUserByUsername;
+  this.login = login;
   this.url = 'http://localhost:8080/api/user';
   this.registerUrl = 'http://localhost:8080/api/register';
+  this.loginUrl = 'http://localhost:8080/api/login';
   var self = this;
 
   function register(user) {
@@ -17,13 +19,23 @@ function AdminUserServiceClient() {
       headers: {
           'content-type': 'application/json'
       }
-  }).then(function (response) {
-    if (response.status == 409) {
-      return {error: "Username is already taken"};
-    } else {
-      return response.json();
-    }
+    }).then(function (response) {
+      if (response.status == 409) {
+        return {error: "Username is already taken"};
+      } else {
+        return response.json();
+      }
   })};
+
+  function login(user) {
+    return fetch(self.loginUrl, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'content-type': 'application/json'
+    }
+    })
+  }
   
   function createUser(user) {
     return fetch(self.url, {

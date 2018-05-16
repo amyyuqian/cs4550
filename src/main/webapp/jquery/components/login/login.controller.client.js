@@ -12,6 +12,11 @@
     $loginBtn.click(login);
    }
   function login() { 
+    var user = {
+      username: $usernameFld.val(),
+      password: $passwordFld.val(),
+    }
 
+    userService.login(user);
    }
 })();
