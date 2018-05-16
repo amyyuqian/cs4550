@@ -14,6 +14,9 @@ import com.example.webdev.repositories.UserRepository;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class UserService {
 	@Autowired
@@ -54,13 +57,25 @@ public class UserService {
 		return null;
 	}
 	
-	@GetMapping("/api/user/{username}")
-	public User findUserByUsername(@PathVariable("username")String username) {
+	@GetMapping("/api/username/{username}")
+	public User findUserByUsername(@PathVariable("username")String username, HttpServletResponse response) {
 		Optional<User> data = repository.findUserByUsername(username);
 		if(data.isPresent()) {
-			return data.get();
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
 		}
 		return null;
+	}
+	
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user, HttpSession session, HttpServletResponse response) {
+		Optional<User> data = repository.findUserByUsername(user.getUsername());
+		if (data.isPresent()) {
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
+			return null;
+		} else {
+			session.setAttribute("user", user.getUsername());
+			return repository.save(user);
+		}
 	}
 	
 	@GetMapping("/api/user/{userId}")

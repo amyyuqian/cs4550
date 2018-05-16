@@ -13,16 +13,47 @@
     $registerBtn.click(register);
   }
   function register() {
-    $('.invalid-feedback').hide();
-    if ($passwordFld.val() != $verifyPasswordFld.val()) {
-      $('.invalid-feedback').show();
+    var username = $usernameFld.val();
+    var password = $passwordFld.val();
+    var verifiedPassword = $verifyPasswordFld.val();
+
+    $('#invalid-password').hide();
+    $('#invalid-username').hide();
+    $('#invalid-verfy').hide();
+
+    if (username == null || username == "") {
+      $('#invalid-username').html("Please enter a username");
+      $('#invalid-username').show();
+    }
+
+    if (password == null || password == "") {
+      $('#invalid-password').html("Please enter a password");
+      $('#invalid-password').show();
+    }
+
+    if (verifiedPassword == null || verifiedPassword == "") {
+      $('#invalid-verify').show();
+    }
+
+    if (password != verifiedPassword) {
+      $('#invalid-password').show();
+      return;
     }
 
     var user = {
-      username: $passwordFld.val(),
+      username: $usernameFld.val(),
       password: $passwordFld.val()
     }
 
-    userService.register(user);
+    userService.register(user).then(redirectUser);
+  }
+
+  function redirectUser(response) {
+    if (response.error) {
+      $('#invalid-username').html("Username already taken");
+      $('#invalid-username').show();
+    } else {
+
+    }
   }
 })();

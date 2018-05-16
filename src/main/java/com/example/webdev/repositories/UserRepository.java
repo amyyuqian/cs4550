@@ -12,7 +12,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 		@Param("username") String username, 
 		@Param("password") String password);
 	
-	@Query("SELECT u FROM User u WHERE u.username=:username LIMIT 1")
+	@Query("SELECT u FROM User u WHERE u.username=:username")
 	Optional<User> findUserByUsername(
 		@Param("username") String username);
 }
