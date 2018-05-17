@@ -1,14 +1,14 @@
-.register-form {
-  width: 50%;
+.profile-form {
   margin: auto;
+  width: 50%;
 }
 
-.register-header {
+.profile-header {
   text-align: center;
 }
 
 @media (max-width: 500px) {
-  .register-form s{
+  .profile-form {
     width: 100%;
   }
 }
