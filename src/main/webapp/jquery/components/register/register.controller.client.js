@@ -60,7 +60,7 @@
       $('#invalid-username').html("Username already taken");
       $('#invalid-username').show();
     } else {
-
+      window.location.href = '../profile/profile.template.client.html'
     }
   }
 })();

@@ -9,10 +9,12 @@ function AdminUserServiceClient() {
   this.login = login;
   this.updateProfile = updateProfile;
   this.logout = logout;
+  this.getProfile = getProfile;
   this.url = 'http://localhost:8080/api/user';
   this.registerUrl = 'http://localhost:8080/api/register';
   this.loginUrl = 'http://localhost:8080/api/login';
   this.profileUrl = 'http://localhost:8080/api/profile';
+  this.logoutUrl = 'http://localhost:8080/api/logout';
   var self = this;
 
   function register(user) {
@@ -101,8 +103,11 @@ function AdminUserServiceClient() {
   }
 
   function logout() {
-
+    return fetch(self.logoutUrl), {
+      method: 'POST'
+    }
   }
+
   function deleteUser(userId) {
     return fetch(
       self.url + '/' + userId, {

@@ -7,16 +7,20 @@
   function main() {
     $username = $('#username');
     $email = $('#email');
-    $dob = $('#dob');
+    $dob = $('#datepicker');
     $role = $('#role');
 
     $updateBtn = $('#updateBtn');
-    $logoutBtn = $('$logoutBtn');
+    $logoutBtn = $('#logoutBtn');
+
+    $dob.datepicker({
+      uiLibrary: 'bootstrap4'
+    });
 
     $updateBtn.click(updateProfile);
     $logoutBtn.click(logout);
 
-    userService.getProfile().then(populatFields);
+    userService.getProfile().then(populateFields);
   }
 
   function populateFields(response) {
@@ -39,6 +43,7 @@
 
   function logout() {
     userService.logout();
+    window.location.href = '../login/login.template.client.html'
   }
 
   function showSuccess(response) {

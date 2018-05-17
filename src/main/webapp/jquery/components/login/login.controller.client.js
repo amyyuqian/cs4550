@@ -28,7 +28,7 @@
       $('#invalid-cred').show();
       return;
     } else {
-
+      window.location.href = '../profile/profile.template.client.html'
     }
   }
 })();

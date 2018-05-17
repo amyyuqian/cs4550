@@ -48,6 +48,12 @@ public class UserService {
 		return user;
 	}
 	
+	@PostMapping("/api/logout")
+	public void logout(HttpSession session) {
+		session.invalidate();
+	}
+
+	
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
 		return (List<User>) repository.findAll();
