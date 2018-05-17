@@ -16,7 +16,7 @@ public class User {
 	private String role;
 	private String phone;
 	private String email;
-	private String dateOfBirth;
+	private Date dateOfBirth;
 
 	public int getId() {
 		return id;
@@ -66,10 +66,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	

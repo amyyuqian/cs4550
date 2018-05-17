@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.webdev.models.User;
 import com.example.webdev.repositories.UserRepository;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -51,14 +52,14 @@ public class UserService {
 		return null;
 	}
 	
-	@PutMapping("/api/profile/{username}")
-	public User updateProfile(@PathVariable("username") String username, @RequestBody User body) {
-		Optional<User> data = repository.findUserByUsername(username);
+	@PutMapping("/api/profile")
+	public User updateProfile(@RequestBody User body) {
+		Optional<User> data = repository.findUserByUsername(body.getUsername());
 		if(data.isPresent()) {
 			User user = data.get();
-			user.setFirstName(body.getFirstName());
-			user.setUsername(body.getUsername());
-			user.setLastName(body.getLastName());
+			user.setPhone(body.getPhone());
+			user.setDateOfBirth(body.getDateOfBirth());
+			user.setEmail(body.getEmail());
 			user.setRole(body.getRole());
 			repository.save(user);
 			return user;
