@@ -42,10 +42,28 @@ public class UserService {
 	}
 	
 	@GetMapping("/api/profile")
-	public Optional<User> profile(HttpSession session) {
+	public User getProfile(HttpSession session) {
 		String username = (String) session.getAttribute("user");	
-		Optional<User> user = repository.findUserByUsername(username);
-		return user;
+		Optional<User> data = repository.findUserByUsername(username);
+		if (data.isPresent()) {
+			return data.get();
+		}
+		return null;
+	}
+	
+	@PutMapping("/api/profile/{username}")
+	public User updateProfile(@PathVariable("username") String username, @RequestBody User body) {
+		Optional<User> data = repository.findUserByUsername(username);
+		if(data.isPresent()) {
+			User user = data.get();
+			user.setFirstName(body.getFirstName());
+			user.setUsername(body.getUsername());
+			user.setLastName(body.getLastName());
+			user.setRole(body.getRole());
+			repository.save(user);
+			return user;
+		}
+		return null;
 	}
 	
 	@PostMapping("/api/logout")

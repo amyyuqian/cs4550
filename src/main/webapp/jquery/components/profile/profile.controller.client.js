@@ -31,6 +31,9 @@
   }
 
   function updateProfile() {
+    $('#danger-alert').hide();
+    $('#success-alert').hide();
+
     var user = {
       username: $username.val(),
       email: $email.val(),
@@ -38,7 +41,7 @@
       role: $role.val(),
     }
 
-    userService.updateProfile(user).then(showSuccess);
+    userService.updateProfile(user).then(showAlerts);
   }
 
   function logout() {
@@ -46,7 +49,7 @@
     window.location.href = '../login/login.template.client.html'
   }
 
-  function showSuccess(response) {
+  function showAlerts(response) {
     if (response.error) {
       $('#danger-alert').show();
     } else {

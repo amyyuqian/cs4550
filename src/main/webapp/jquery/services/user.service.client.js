@@ -77,7 +77,9 @@ function AdminUserServiceClient() {
   })};
 
   function getProfile() {
-    return fetch(self.profileUrl)
+    return fetch(self.profileUrl, {
+      credentials: "same-origin",
+    })
       .then(function(response) {
         return response.json();
       })
