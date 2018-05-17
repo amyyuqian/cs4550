@@ -41,6 +41,13 @@ public class UserService {
 		return data.get();
 	}
 	
+	@GetMapping("/api/profile")
+	public Optional<User> profile(HttpSession session) {
+		String username = (String) session.getAttribute("user");	
+		Optional<User> user = repository.findUserByUsername(username);
+		return user;
+	}
+	
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
 		return (List<User>) repository.findAll();

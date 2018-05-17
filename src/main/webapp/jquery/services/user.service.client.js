@@ -7,9 +7,12 @@ function AdminUserServiceClient() {
   this.register = register;
   this.findUserByUsername = findUserByUsername;
   this.login = login;
+  this.updateProfile = updateProfile;
+  this.logout = logout;
   this.url = 'http://localhost:8080/api/user';
   this.registerUrl = 'http://localhost:8080/api/register';
   this.loginUrl = 'http://localhost:8080/api/login';
+  this.profileUrl = 'http://localhost:8080/api/profile';
   var self = this;
 
   function register(user) {
@@ -18,7 +21,8 @@ function AdminUserServiceClient() {
       body: JSON.stringify(user),
       headers: {
           'content-type': 'application/json'
-      }
+      },
+      credentials: "same-origin",
     }).then(function (response) {
       if (response.status == 409) {
         return {error: "Username is already taken"};
@@ -33,8 +37,9 @@ function AdminUserServiceClient() {
       body: JSON.stringify(user),
       headers: {
         'content-type': 'application/json'
-    }
-  }).then(function (response) {
+      },
+      credentials: "same-origin",
+    }).then(function (response) {
       return response.json();
     })
   }
@@ -46,7 +51,7 @@ function AdminUserServiceClient() {
       headers: {
           'content-type': 'application/json'
       }
-  });
+    });
   }
   function findAllUsers() {
     return fetch(self.url)
@@ -60,7 +65,7 @@ function AdminUserServiceClient() {
   }
 
   function findUserByUsername(username) {
-    return fetch("http://localhost:8080/api/username/" + username)
+    return fetch(self.url + "?username=" + username)
       .then(function (response) {
         if (response.status == 409) {
           return {error: "Username is already taken"};
@@ -68,6 +73,13 @@ function AdminUserServiceClient() {
           return response.json();
         }
   })};
+
+  function getProfile() {
+    return fetch(self.profileUrl)
+      .then(function(response) {
+        return response.json();
+      })
+  }
 
   function updateUser(userId, user) {
     return fetch(self.url + '/' + userId, {
@@ -78,11 +90,24 @@ function AdminUserServiceClient() {
       }
     })
   }
+  function updateProfile(user) {
+    return fetch(self.profileUrl, {
+      method: 'PUT',
+      body: JSON.stringify(user),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+  }
+
+  function logout() {
+
+  }
   function deleteUser(userId) {
     return fetch(
       self.url + '/' + userId, {
         method: 'DELETE'
       }
-  );
+    );
   }
 }

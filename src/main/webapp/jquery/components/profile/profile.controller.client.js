@@ -14,11 +14,19 @@
     $logoutBtn = $('$logoutBtn');
 
     $updateBtn.click(updateProfile);
-    $logoutBtn.click(logout)
+    $logoutBtn.click(logout);
+
+    userService.getProfile().then(populatFields);
   }
+
+  function populateFields(response) {
+    $('#username').val(response.username);
+    $('#email').val(response.email);
+    $('#dob').val(response.dateOfBirth);
+    $('#role').val(response.role);
+  }
+
   function updateProfile() {
-    var userId = window.location;
-    
     var user = {
       username: $username.val(),
       email: $email.val(),
@@ -26,7 +34,7 @@
       role: $role.val(),
     }
 
-    userService.update(user).then(showSuccess);
+    userService.updateProfile(user).then(showSuccess);
   }
 
   function logout() {
