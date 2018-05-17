@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link href="register.style.client.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../services/user.service.client.js"></script>
+    <script src="register.controller.client.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="register-header">Profile</h1>
+      <div class="alert alert-success" role="alert">
+        Profile successfully saved!
+      </div>
+      <form class="register-form">
+        <div class="form-group col-md-12">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Username" readonly>
+        </div>
+        <div class="form-group col-md-12">
+          <label for="password">Phone</label>
+          <input type="text" class="form-control" id="phone" placeholder="(123) 456-7800">
+        </div>
+        <div class="form-group col-md-12">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+        </div>
+        <div class="form-group col-md-12">
+          <label for="datepicker">Date of Birth</label>
+          <div class='input-group date' id='datepicker'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group col-md-12">
+          <label for="email">Role</label>
+          <select id="roleFld" class="form-control">
+            <option value="FACULTY">Faculty</option>
+            <option value="STUDENT">Student</option>
+            <option value="ADMIN">Admin</option>
+          </select>
+        </div>
+        <div class="form-group col-md-12">
+          <button type="button" id="updateBtn" class="btn btn-primary btn-block">Update</button>
+          <button type="button" id="logoutBtn" class="btn btn-danger btn-block">Logout</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+
+
