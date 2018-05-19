@@ -28,14 +28,27 @@ export default class CourseList extends React.Component {
     return (rows);
   }
 
+  titleChanged = (event) => {
+    this.setState({
+      course: { 
+        title: event.target.value
+      }
+    })
+  }
+
+  createCourse = () => {
+    console.log(this.state.course);
+  }
+
   render() {
     return (
       <div>
         <h2>Course List</h2>
         <table>
           <thead>
-            <tr>
-              <th>Title</th>
+            <tr><th>Title</th></tr>
+            <tr><th><input id="titleFld" placeholder="cs101" onChange={this.titleChanged}/></th>
+            <th><button class="btn btn-primary" onClick={this.createCourse}>Add</button></th>
             </tr>
           </thead>
           <tbody>
