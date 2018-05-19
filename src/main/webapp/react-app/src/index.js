@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CourseManager from './containers/CourseManager';
 
 ReactDOM.render(
- <h1>Hello, world!</h1>,
- document.getElementById('root')
+   <CourseManager/>,
+   document.getElementById('root')
 );
+
