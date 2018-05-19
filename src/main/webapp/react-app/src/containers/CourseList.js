@@ -4,10 +4,12 @@ import CourseService from '../services/CourseService';
 
 export default class CourseList extends React.Component {
   constructor() {
-       this.courseService = CourseService.instance;
-       this.state = {
-         courses: [],
-       };
+    super();
+    
+    this.courseService = CourseService.instance;
+    this.state = {
+      courses: [],
+    };
   }
 
   componentDidMount() {
