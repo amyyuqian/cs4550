@@ -1,10 +1,11 @@
 import React from 'react';
+import ModuleList from './ModuleList';
 
 export default class CourseEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      courseId: ''
+      courseId: this.props.match.params.courseId,
     };
   }
 
@@ -15,7 +16,6 @@ export default class CourseEditor extends React.Component {
   componentWillReceiveProps(newProps){
     this.selectCourse(newProps.match.params.courseId);
   }
- 
   
   selectCourse = (courseId) => {
     this.setState({ courseId: courseId });
@@ -23,7 +23,10 @@ export default class CourseEditor extends React.Component {
 
   render() {
     return (
-        <h3>Course {this.state.courseId}</h3>
+      <div>
+        <h5 className="ml-3">Course {this.state.courseId}</h5>
+        <ModuleList courseId={this.state.courseId} />
+      </div>
     )
   }
 }
