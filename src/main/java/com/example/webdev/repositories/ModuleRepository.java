@@ -11,9 +11,5 @@ import com.example.webdev.models.Module;
 import com.example.webdev.models.User;
 
 public interface ModuleRepository extends CrudRepository<Module, Integer>{
-	
-	@Query("SELECT m FROM Module m WHERE m.course=:id")
-	List<Module> findAllModulesForCourse(
-		@Param("id") int id);
 
 }
