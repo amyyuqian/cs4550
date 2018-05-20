@@ -9,6 +9,7 @@ export default class ModuleList extends React.Component {
     this.moduleService = ModuleService.instance;
     this.state = {
       modules: [],
+      activeModule: '',
     };
   }
 
@@ -43,11 +44,27 @@ export default class ModuleList extends React.Component {
     })
   }
 
+  setActive = (module) => {
+    if (this.state.activeModule.title != module.title) {
+      this.setState({activeModule: module});
+    } 
+  }
+
+  isActive = (module) => {
+    if (module.title == this.state.activeModule.title) {
+      return 'list-group-item list-group-item-action justify-content-between w-25 active';
+    } else {
+      return 'list-group-item list-group-item-action justify-content-between w-25';
+    }
+  }
+
   moduleRows = () => {
     let rows = this.state.modules.map((module) => {
-        return <ModuleRow module={module} key={module.id}
-          delete={this.deleteModule}/>
-      }
+        return (
+          <ModuleRow module={module} key={module.id}
+          delete={this.deleteModule} isActive={this.isActive}
+          setActive={this.setActive}/>
+        )}
     )
     return (rows);
   }
