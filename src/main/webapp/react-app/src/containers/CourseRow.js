@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class CourseRow extends React.Component {
   constructor(props) { 
@@ -12,7 +13,11 @@ export default class CourseRow extends React.Component {
   render() {
       return (
         <tr>
-          <td>{this.props.course.title}</td>
+          <td>
+            <Link to={`/course/${this.props.course.id}/edit`}>
+              {this.props.course.title}
+            </Link>
+          </td>
           <td><button className={'btn btn-danger'} onClick={this.delete}>Delete</button></td>
         </tr>
       )
