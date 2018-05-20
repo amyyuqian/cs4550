@@ -1,9 +1,6 @@
 package com.example.webdev.models;
 
 import javax.persistence.*;
-
-import org.springframework.data.annotation.Id;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
