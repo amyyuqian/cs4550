@@ -1,6 +1,7 @@
 import React from 'react';
 import ModuleService from '../services/ModuleServiceClient';
 import ModuleRow from './ModuleRow';
+import ModuleEditor from './ModuleEditor';
 
 export default class ModuleList extends React.Component {
   constructor(props) {
@@ -85,7 +86,7 @@ export default class ModuleList extends React.Component {
         <ul className="listGroup">
           {this.moduleRows()}
         </ul>
-        
+        <ModuleEditor />
       </div>
     )
   }
