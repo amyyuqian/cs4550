@@ -8,15 +8,15 @@ export default class CourseManager extends React.Component {
       return (
         <Router>
           <div>
-            <nav className="navbar navbar-dark bg-primary">
+            <nav className="navbar navbar-light">
               <span className="navbar-brand mb-0 h1">Course Manager</span>
-              <div className="navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav mr-auto">
+              <div id="nav">
+                <ul className="nav">
                   <li className="nav-item active">
                     <a className="nav-link" href="/course/list">Course List </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#"></a>
+                    <a className="nav-link" href="#">f</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#"></a>
@@ -24,6 +24,7 @@ export default class CourseManager extends React.Component {
                 </ul>
               </div>
             </nav>
+            <hr />
             <Route path="/course/list" component={CourseList}></Route>
             <Route path="/course/:courseId/edit" component={CourseEditor}></Route>
           </div>

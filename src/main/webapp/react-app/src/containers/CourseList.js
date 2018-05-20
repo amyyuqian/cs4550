@@ -54,7 +54,9 @@ export default class CourseList extends React.Component {
   render() {
     return (
       <div>
-        <h2 styles={{}}>Course List</h2>
+        <div className="ml-3">
+          <h5>Course List</h5>
+        </div>
         <table className={'table'}>
           <thead>
             <tr><th><input className="form-control col-md-4" id="titleFld" 
