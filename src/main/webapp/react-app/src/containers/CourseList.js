@@ -12,12 +12,16 @@ export default class CourseList extends React.Component {
     };
   }
 
+  findAllCourses = () => {
+    this.courseService.findAllCourses()
+        .then((courses) => {
+            this.setState({courses: courses});
+            console.log(courses);
+        });
+ }
+
   componentDidMount() {
-    this.courseService.findAllCourses().then((courses) => {
-      this.setState({
-        courses: courses,
-      })
-    })
+    this.findAllCourses();
   }
 
   courseRows = () => {
@@ -37,7 +41,10 @@ export default class CourseList extends React.Component {
   }
 
   createCourse = () => {
-    console.log(this.state.course);
+    this.courseService
+      .createCourse(this.state.course)
+      .then(() => { this.findAllCourses(); });
+
   }
 
   render() {
@@ -48,7 +55,7 @@ export default class CourseList extends React.Component {
           <thead>
             <tr><th>Title</th></tr>
             <tr><th><input id="titleFld" placeholder="cs101" onChange={this.titleChanged}/></th>
-            <th><button class="btn btn-primary" onClick={this.createCourse}>Add</button></th>
+            <th><button className={"btn btn-primary"} onClick={this.createCourse}>Add</button></th>
             </tr>
           </thead>
           <tbody>
