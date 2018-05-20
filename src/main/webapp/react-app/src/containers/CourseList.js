@@ -16,7 +16,6 @@ export default class CourseList extends React.Component {
     this.courseService.findAllCourses()
         .then((courses) => {
             this.setState({courses: courses});
-            console.log(courses);
         });
  }
 
@@ -26,7 +25,8 @@ export default class CourseList extends React.Component {
 
   courseRows = () => {
     let rows = this.state.courses.map((course) => {
-        return <CourseRow course={course} />
+        return <CourseRow course={course} key={course.id}
+          delete={this.deleteCourse}/>
       }
     )
     return (rows);
@@ -40,12 +40,16 @@ export default class CourseList extends React.Component {
     })
   }
 
-  createCourse = () => {
-    this.courseService
-      .createCourse(this.state.course)
-      .then(() => { this.findAllCourses(); });
-
+  deleteCourse = (courseId) => {
+    this.courseService.deleteCourse(courseId);
   }
+
+  createCourse = () => {
+    this.courseService.createCourse(this.state.course)
+      .then(() => { this.findAllCourses(); 
+      });
+  }
+  
 
   render() {
     return (
