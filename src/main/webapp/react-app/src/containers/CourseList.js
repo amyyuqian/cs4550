@@ -54,12 +54,12 @@ export default class CourseList extends React.Component {
   render() {
     return (
       <div>
-        <h2>Course List</h2>
-        <table>
+        <h2 styles={{}}>Course List</h2>
+        <table className={'table'}>
           <thead>
-            <tr><th>Title</th></tr>
-            <tr><th><input id="titleFld" placeholder="cs101" onChange={this.titleChanged}/></th>
-            <th><button className={"btn btn-primary"} onClick={this.createCourse}>Add</button></th>
+            <tr><th><input className="form-control col-md-4" id="titleFld" 
+              placeholder="cs101" onChange={this.titleChanged}/></th>
+            <th><button className="btn btn-primary my-2 my-sm-0" onClick={this.createCourse}>Add</button></th>
             </tr>
           </thead>
           <tbody>
