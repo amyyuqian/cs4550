@@ -41,7 +41,9 @@ export default class CourseList extends React.Component {
   }
 
   deleteCourse = (courseId) => {
-    this.courseService.deleteCourse(courseId);
+    this.courseService.deleteCourse(courseId)
+      .then(() => { this.findAllCourses(); 
+      });
   }
 
   createCourse = () => {
@@ -60,7 +62,7 @@ export default class CourseList extends React.Component {
         <table className={'table'}>
           <thead>
             <tr><th><input className="form-control col-md-4" id="titleFld" 
-              placeholder="cs101" onChange={this.titleChanged}/></th>
+              placeholder="CS2500" onChange={this.titleChanged}/></th>
             <th><button className="btn btn-primary my-2 my-sm-0" onClick={this.createCourse}>Add</button></th>
             </tr>
           </thead>

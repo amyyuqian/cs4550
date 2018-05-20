@@ -24,7 +24,23 @@ export default class ModuleList extends React.Component {
   }
 
   deleteModule = (moduleId) => {
-    this.moduleService.deleteModule(moduleId);
+    this.moduleService.deleteModule(moduleId)
+      .then(() => { this.findAllModulesByCourse(); 
+      });
+  }
+
+  createModule = () => {
+    this.moduleService.createModule(this.props.courseId, this.state.module)
+      .then(() => { this.findAllModulesByCourse(); 
+      });
+  }
+
+  titleChanged = (event) => {
+    this.setState({
+      module: { 
+        title: event.target.value
+      }
+    })
   }
 
   moduleRows = () => {
@@ -39,7 +55,20 @@ export default class ModuleList extends React.Component {
   render() {
     return (
       <div>
-        {this.moduleRows()}
+        <div className="col-lg-6">
+          <div className="input-group">
+            <input className="form-control col-md-4" id="module" 
+                  placeholder="Module name" onChange={this.titleChanged}/>
+            <span className="input-group-btn">
+              <button className="btn btn-primary" type="button" onClick={this.createModule}>Add</button>
+            </span>
+          </div>
+        </div>
+        <hr />
+        <ul className="listGroup">
+          {this.moduleRows()}
+        </ul>
+        
       </div>
     )
   }

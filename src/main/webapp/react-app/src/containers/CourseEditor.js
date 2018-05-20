@@ -25,6 +25,7 @@ export default class CourseEditor extends React.Component {
     return (
       <div>
         <h5 className="ml-3">Course {this.state.courseId}</h5>
+        <hr />
         <ModuleList courseId={this.state.courseId} />
       </div>
     )
