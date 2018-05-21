@@ -62,7 +62,7 @@ export default class ModuleList extends React.Component {
   moduleRows = () => {
     let rows = this.state.modules.map((module) => {
         return (
-          <ModuleRow module={module} key={module.id}
+          <ModuleRow module={module} key={module.id} courseId={this.props.courseId}
           delete={this.deleteModule} isActive={this.isActive}
           setActive={this.setActive}/>
         )}

@@ -43,15 +43,15 @@ export default class LessonTabs extends React.Component {
   }
 
   setActive = (lesson) => {
-    this.setState({activeLesson: lesson}); 
+    this.setState({activeLesson: lesson});
+    this.findAllLessonsByModule(); 
   }
 
   isActive = (lesson) => {
-    if (this.state.activeLesson &&
-      (lesson.title == this.state.activeLesson.title)) {
+    if (lesson.title == this.state.activeLesson.title) {
       return 'nav-link active justify-content-between';
     } else {
-      return 'nav-link active justify-content-between';
+      return 'nav-link justify-content-between';
     }
   }
 
@@ -59,12 +59,12 @@ export default class LessonTabs extends React.Component {
     let tabs = this.state.lessons.map((lesson) => {
       return (
         <li className="nav-item lesson" key={lesson.id}>
-          <a className={this.isActive(lesson)} href="#"
-            onClick={this.setActive}>
+          <button className={this.isActive(lesson)}
+            onClick={() => {this.setActive(lesson)}}>
             {lesson.title}
-          </a>
-          <button onClick={() => this.deleteLesson(lesson.id)} type="button" className="close" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <button onClick={() => this.deleteLesson(lesson.id)} type="button" className="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </button>
         </li>
       )

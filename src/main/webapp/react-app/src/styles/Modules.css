@@ -22,3 +22,7 @@
 .lesson {
   display: flex;
 }
+
+.close {
+  margin-left: 5px;
+}
