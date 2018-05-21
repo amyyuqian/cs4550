@@ -1,11 +1,13 @@
 package com.example.webdev.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.webdev.models.Course;
 import com.example.webdev.models.Lesson;
 import com.example.webdev.models.Module;
 import com.example.webdev.repositories.LessonRepository;
@@ -31,6 +33,8 @@ public class LessonService {
 		if (data.isPresent()) {
 			Module mod = data.get();
 			lesson.setModule(mod);
+			Course course = mod.getCourse();
+			course.setModified(new Date());
 			return lessonRepository.save(lesson);
 		}
 		return null;
@@ -38,6 +42,15 @@ public class LessonService {
 	
 	@DeleteMapping("/api/lesson/{lessonId}")
 	public void deleteLesson(@PathVariable("lessonId") int id) {
+		Optional<Lesson> data = lessonRepository.findById(id);
+		
+		if (data.isPresent()) {
+			Lesson l = data.get();
+			Module m = l.getModule();
+			Course course = m.getCourse();
+			course.setModified(new Date());
+		}
+		
 		lessonRepository.deleteById(id);
 	}
 	
