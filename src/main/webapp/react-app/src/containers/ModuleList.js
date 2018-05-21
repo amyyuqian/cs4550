@@ -2,6 +2,7 @@ import React from 'react';
 import ModuleService from '../services/ModuleServiceClient';
 import ModuleRow from './ModuleRow';
 import ModuleEditor from './ModuleEditor';
+import '../styles/Modules.css';
 
 export default class ModuleList extends React.Component {
   constructor(props) {
@@ -46,16 +47,15 @@ export default class ModuleList extends React.Component {
   }
 
   setActive = (module) => {
-    if (this.state.activeModule.title != module.title) {
       this.setState({activeModule: module});
-    } 
+      this.renderModuleEditor();
   }
 
   isActive = (module) => {
     if (module.title == this.state.activeModule.title) {
-      return 'list-group-item list-group-item-action justify-content-between w-25 active';
+      return 'list-group-item list-group-item-action justify-content-between active';
     } else {
-      return 'list-group-item list-group-item-action justify-content-between w-25';
+      return 'list-group-item list-group-item-action justify-content-between ';
     }
   }
 
@@ -70,23 +70,33 @@ export default class ModuleList extends React.Component {
     return (rows);
   }
 
+  renderModuleEditor = () => {
+    if (this.state.activeModule.id) {
+      return (
+      <ModuleEditor courseId={this.props.courseId} moduleId={this.state.activeModule.id}/>
+      )
+    }
+  }
+
   render() {
     return (
       <div>
-        <div className="col-lg-6">
-          <div className="input-group">
-            <input className="form-control col-md-4" id="module" 
-                  placeholder="Module name" onChange={this.titleChanged}/>
-            <span className="input-group-btn">
-              <button className="btn btn-primary" type="button" onClick={this.createModule}>Add</button>
-            </span>
+        <div className="module-editor">
+          <div className="module-container col-md-3">
+            <div className="input-group add-module">
+              <input className="form-control" id="module" 
+                    placeholder="Module name" onChange={this.titleChanged}/>
+              <span className="input-group-btn">
+                <button className="btn btn-secondary" type="button" onClick={this.createModule}>Add</button>
+              </span>
+            </div>
+            <ul className="listGroup modules-wrapper">
+              {this.moduleRows()}
+            </ul>
           </div>
+          {this.renderModuleEditor()}
         </div>
-        <hr />
-        <ul className="listGroup">
-          {this.moduleRows()}
-        </ul>
-        <ModuleEditor />
+        
       </div>
     )
   }

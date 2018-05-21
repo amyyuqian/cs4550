@@ -16,19 +16,13 @@ export default class CourseManager extends React.Component {
                   <li className="nav-item active">
                     <a className="nav-link" href="/course/list">Course List </a>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">f</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#"></a>
-                  </li>
                 </ul>
               </div>
             </nav>
             <hr />
             <Route path="/course/list" component={CourseList}></Route>
             <Route path="/course/:courseId/edit" component={CourseEditor}></Route>
-            <Route path="/course/:courseId/module/:moduleId/edit" component={ModuleEditor}></Route>}
+            <Route path="/course/:courseId/module/:moduleId/edit" component={ModuleEditor}></Route>
           </div>
         </Router>
       )

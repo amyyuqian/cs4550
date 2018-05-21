@@ -42,5 +42,5 @@ export default class ModuleService {
         method: 'GET'
       }).then(function (response) {
         return response.json();
-})}
+    })}
 }

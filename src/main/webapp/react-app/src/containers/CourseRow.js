@@ -15,6 +15,12 @@ export default class CourseRow extends React.Component {
               {this.props.course.title}
             </Link>
           </td>
+          <td>
+            {this.props.course.created}
+          </td>
+          <td>
+            {this.props.course.modified}
+          </td>
           <td><button className={'btn btn-danger'} onClick={this.delete}>Delete</button></td>
         </tr>
       )

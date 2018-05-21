@@ -1,4 +1,5 @@
 import React from 'react';
+import LessonTabs from './LessonTabs';
 
 export default class ModuleEditor extends React.Component {
   constructor(props) {
@@ -7,7 +8,8 @@ export default class ModuleEditor extends React.Component {
 
   render() {
     return (
-      <div></div>
+        <LessonTabs courseId={this.props.courseId}
+          moduleId={this.props.moduleId}/>
     )
   }
 }

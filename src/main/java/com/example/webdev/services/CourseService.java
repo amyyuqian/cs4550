@@ -1,5 +1,6 @@
 package com.example.webdev.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class CourseService {
 	
 	@PostMapping("/api/course")
 	public Course createCourse(@RequestBody Course course) {
+			Course c = course;
+			c.setCreated(new Date());
 			return courseRepository.save(course);
 	}
 	
