@@ -2,6 +2,8 @@ package com.example.webdev.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Widget {
@@ -15,6 +17,9 @@ public abstract class Widget {
 	private String style;
 	private String width;
 	private String height;
+	@ManyToOne
+	@JsonIgnore
+	private Lesson lesson;
 	
 	public int getId() {
 		return id;
@@ -63,5 +68,11 @@ public abstract class Widget {
 	}
 	public void setHeight(String height) {
 		this.height = height;
+	}
+	public Lesson getLesson() {
+		return lesson;
+	}
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
 	}
 }
