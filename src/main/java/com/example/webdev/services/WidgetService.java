@@ -7,13 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.webdev.models.Course;
-import com.example.webdev.models.Heading;
-import com.example.webdev.models.Image;
 import com.example.webdev.models.Lesson;
-import com.example.webdev.models.Link;
 import com.example.webdev.models.Module;
 import com.example.webdev.models.Widget;
-import com.example.webdev.models.List;
 import com.example.webdev.repositories.CourseRepository;
 import com.example.webdev.repositories.LessonRepository;
 import com.example.webdev.repositories.WidgetRepository;
@@ -97,33 +93,13 @@ public class WidgetService {
 			w.setStyle(body.getStyle());
 			w.setText(body.getText());
 			w.setWidth(body.getWidth());
+			w.setHref(body.getHref());
+			w.setListItems(body.getListItems());
+			w.setListType(body.getListType());
+			w.setSize(body.getSize());
+			w.setSrc(body.getSrc());
+			w.setWidgetType(body.getWidgetType());
 			
-			if (w.getClassName() == "image") {
-				Image i = (Image) w;
-				Image bodyImage = (Image) body;
-				i.setSrc(bodyImage.getSrc());
-				widgetRepository.save(i);
-				return i;
-			} else if (w.getClassName() == "link") {
-				Link l = (Link) w;
-				Link bodyLink = (Link) body;
-				l.setHref(bodyLink.getHref());
-				widgetRepository.save(l);
-				return l;
-			} else if (w.getClassName() == "heading") {
-				Heading h = (Heading) w;
-				Heading bodyHeading = (Heading) body;
-				h.setSize(bodyHeading.getSize());
-				widgetRepository.save(h);
-				return h;
-			} else if (w.getClassName() == "list") {
-				List li = (List) w;
-				List bodyLi = (List) body;
-				li.setListItems(bodyLi.getListItems());
-				li.setListType(bodyLi.getListType());
-				widgetRepository.save(li);
-				return li;
-			}
 			widgetRepository.save(w);
 			return w;
 		}
@@ -143,29 +119,13 @@ public class WidgetService {
 			w.setStyle(widget.getStyle());
 			w.setText(widget.getText());
 			w.setWidth(widget.getWidth());
-			
-			if (w.getClassName() == "image") {
-				Image i = (Image) w;
-				Image bodyImage = (Image) body;
-				i.setSrc(bodyImage.getSrc());
-				widgetRepository.save(i);
-			} else if (w.getClassName() == "link") {
-				Link l = (Link) w;
-				Link bodyLink = (Link) body;
-				l.setHref(bodyLink.getHref());
-				widgetRepository.save(l);
-			} else if (w.getClassName() == "heading") {
-				Heading h = (Heading) w;
-				Heading bodyHeading = (Heading) body;
-				h.setSize(bodyHeading.getSize());
-				widgetRepository.save(h);
-			} else if (w.getClassName() == "list") {
-				List li = (List) w;
-				List bodyLi = (List) body;
-				li.setListItems(bodyLi.getListItems());
-				li.setListType(bodyLi.getListType());
-				widgetRepository.save(li);
-			}
+			w.setHref(widget.getHref());
+			w.setListItems(widget.getListItems());
+			w.setListType(widget.getListType());
+			w.setSize(widget.getSize());
+			w.setSrc(widget.getSrc());
+			w.setWidgetType(widget.getWidgetType());
+
 			widgetRepository.save(w);
 			
 		}
