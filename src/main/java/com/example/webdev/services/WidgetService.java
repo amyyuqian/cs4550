@@ -129,4 +129,47 @@ public class WidgetService {
 		}
 		return null;
 	}
+	
+	@PutMapping("/api/widget/save")
+	public void saveWidgetList(@RequestBody Iterable<Widget> body) {
+		for (Widget widget : body) {
+			Optional<Widget> data = widgetRepository.findById(widget.getId());
+		
+			if (data.isPresent() ) {
+				Widget w = data.get();
+				w.setClassName(widget.getClassName());
+				w.setHeight(widget.getHeight());
+				w.setName(widget.getName());
+				w.setPosition(widget.getPosition());
+				w.setStyle(widget.getStyle());
+				w.setText(widget.getText());
+				w.setWidth(widget.getWidth());
+				
+				if (w.getClassName() == "image") {
+					Image i = (Image) w;
+					Image bodyImage = (Image) body;
+					i.setSrc(bodyImage.getSrc());
+					widgetRepository.save(i);
+				} else if (w.getClassName() == "link") {
+					Link l = (Link) w;
+					Link bodyLink = (Link) body;
+					l.setHref(bodyLink.getHref());
+					widgetRepository.save(l);
+				} else if (w.getClassName() == "heading") {
+					Heading h = (Heading) w;
+					Heading bodyHeading = (Heading) body;
+					h.setSize(bodyHeading.getSize());
+					widgetRepository.save(h);
+				} else if (w.getClassName() == "list") {
+					List li = (List) w;
+					List bodyLi = (List) body;
+					li.setListItems(bodyLi.getListItems());
+					li.setListType(bodyLi.getListType());
+					widgetRepository.save(li);
+				}
+				widgetRepository.save(w);
+			}
+		}
+		
+	}
 }
