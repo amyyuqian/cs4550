@@ -20,7 +20,7 @@ public class Widget {
 	private String href;
 	private String src;
 	private String listItems;
-	private ListType listType;
+	private String listType;
 	private String widgetType;
 	@ManyToOne
 	@JsonIgnore
@@ -104,10 +104,10 @@ public class Widget {
 	public void setListItems(String listItems) {
 		this.listItems = listItems;
 	}
-	public ListType getListType() {
+	public String getListType() {
 		return listType;
 	}
-	public void setListType(ListType listType) {
+	public void setListType(String listType) {
 		this.listType = listType;
 	}
 	public String getWidgetType() {
