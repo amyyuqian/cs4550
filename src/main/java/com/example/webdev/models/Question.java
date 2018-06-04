@@ -17,7 +17,7 @@ public class Question {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
-	private String subtitle;
+	private String description;
 	private String type;
 	private int points;
 	@ManyToOne
@@ -35,11 +35,11 @@ public class Question {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getSubtitle() {
-		return subtitle;
+	public String getDescription() {
+		return description;
 	}
-	public void setSubtitle(String subtitle) {
-		this.subtitle = subtitle;
+	public void setSubtitle(String description) {
+		this.description = description;
 	}
 	public int getPoints() {
 		return points;
