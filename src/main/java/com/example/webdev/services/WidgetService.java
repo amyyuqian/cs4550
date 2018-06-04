@@ -1,6 +1,7 @@
 package com.example.webdev.services;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,6 @@ public class WidgetService {
 			Course course = m.getCourse();
 			course.setModified(new Date());
 		}
-		
 		widgetRepository.deleteById(id);
 	}
 	
@@ -86,18 +86,7 @@ public class WidgetService {
 		
 		if (data.isPresent() ) {
 			Widget w = data.get();
-			w.setClassName(body.getClassName());
-			w.setHeight(body.getHeight());
-			w.setName(body.getName());
-			w.setPosition(body.getPosition());
-			w.setStyle(body.getStyle());
 			w.setText(body.getText());
-			w.setWidth(body.getWidth());
-			w.setHref(body.getHref());
-			w.setListItems(body.getListItems());
-			w.setListType(body.getListType());
-			w.setSize(body.getSize());
-			w.setSrc(body.getSrc());
 			w.setWidgetType(body.getWidgetType());
 			
 			widgetRepository.save(w);
@@ -106,29 +95,11 @@ public class WidgetService {
 		return null;
 	}
 	
-	@PutMapping("/api/widget/save")
-	public void saveWidgetList(@RequestBody Iterable<Widget> body) {
-		for (Widget widget : body) {
-			Optional<Widget> data = widgetRepository.findById(widget.getId());
-		
-			Widget w = data.isPresent() ? data.get() : widget;
-			w.setClassName(widget.getClassName());
-			w.setHeight(widget.getHeight());
-			w.setName(widget.getName());
-			w.setPosition(widget.getPosition());
-			w.setStyle(widget.getStyle());
-			w.setText(widget.getText());
-			w.setWidth(widget.getWidth());
-			w.setHref(widget.getHref());
-			w.setListItems(widget.getListItems());
-			w.setListType(widget.getListType());
-			w.setSize(widget.getSize());
-			w.setSrc(widget.getSrc());
-			w.setWidgetType(widget.getWidgetType());
-
-			widgetRepository.save(w);
-			
+	@PostMapping("/api/widget/save")
+	public void saveAllWidgets(@RequestBody List<Widget> widgets) {
+		widgetRepository.deleteAll();
+		for(Widget widget: widgets) {
+			widgetRepository.save(widget);
 		}
-		
 	}
 }

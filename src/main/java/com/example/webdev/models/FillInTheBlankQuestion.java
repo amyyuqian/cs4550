@@ -1,6 +1,6 @@
 package com.example.webdev.models;
 
-public class FillInTheBlankQuestion {
+public class FillInTheBlankQuestion extends Question {
 	private String blanks;
 
 	public String getBlanks() {
