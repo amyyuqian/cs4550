@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Exam extends Widget {
 	private String title;
-	private String description;
+	private String subtitle;
 	@OneToMany(mappedBy="exam")
 	@JsonIgnore
 	private List<Question> questions;
@@ -20,11 +20,11 @@ public class Exam extends Widget {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDescription() {
-		return description;
+	public String getSubtitle() {
+		return subtitle;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
 	}
 	public List<Question> getQuestions() {
 		return questions;
