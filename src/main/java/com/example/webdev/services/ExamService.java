@@ -29,7 +29,7 @@ import com.example.webdev.repositories.MultipleChoiceQuestionRepository;
 import com.example.webdev.repositories.TrueFalseQuestionRepository;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ExamService {
 	@Autowired
 	ExamRepository examRepository;
@@ -58,7 +58,7 @@ public class ExamService {
 		return null;
 	}
 	
-	@PostMapping("/api/lesson/{:lid}/exam")
+	@PostMapping("/api/lesson/{lid}/exam")
 	public Exam createExam(@PathVariable("lid") int lid, @RequestBody Exam body) {
 		Optional<Lesson> data = lRepo.findById(lid);
 		
@@ -183,7 +183,7 @@ public class ExamService {
 		return null;
 	}
 	
-	@PutMapping("/api/blanks/{id}")
+	@PutMapping("/api/truefalse/{id}")
 	public TrueFalseQuestion updateTrueFalse(@PathVariable("id") int id, 
 			@RequestBody TrueFalseQuestion body) {
 		Optional<TrueFalseQuestion> data = trueFalseRepo.findById(id);
