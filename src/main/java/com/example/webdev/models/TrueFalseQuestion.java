@@ -8,7 +8,7 @@ public class TrueFalseQuestion extends Question {
 	public boolean getIsTrue() {
 		return isTrue;
 	}
-	public void setTrue(boolean isTrue) {
+	public void setIsTrue(boolean isTrue) {
 		this.isTrue = isTrue;
 	}
 }

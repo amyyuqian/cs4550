@@ -38,7 +38,7 @@ public class Question {
 	public String getDescription() {
 		return description;
 	}
-	public void setSubtitle(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	public int getPoints() {

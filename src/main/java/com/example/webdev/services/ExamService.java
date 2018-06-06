@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -86,6 +87,50 @@ public class ExamService {
 		return null;
 	}
 	
+	@PutMapping("/api/exam/{id}")
+	public Exam updateExam(@PathVariable("id") int id, @RequestBody Exam body) {
+		Optional<Exam> data = examRepository.findById(id);
+		
+		if (data.isPresent()) {
+			Exam e = data.get();
+			e.setTitle(body.getTitle());
+			e.setText(body.getText());
+			return examRepository.save(e);
+		}
+		return null;
+	}
+	
+	@PutMapping("/api/essay/{id}")
+	public EssayQuestion updateEssay(@PathVariable("id") int id, @RequestBody EssayQuestion body) {
+		Optional<EssayQuestion> data = essayRepo.findById(id);
+		
+		if (data.isPresent()) {
+			EssayQuestion e = data.get();
+			e.setTitle(body.getTitle());
+			e.setPoints(body.getPoints());
+			e.setDescription(body.getDescription());
+			return essayRepo.save(e);
+		}
+		return null;
+	}
+	
+	@PutMapping("/api/multi/{id}")
+	public MultipleChoiceQuestion updateMulti(@PathVariable("id") int id, 
+			@RequestBody MultipleChoiceQuestion body) {
+		Optional<MultipleChoiceQuestion> data = multiRepo.findById(id);
+		
+		if (data.isPresent()) {
+			MultipleChoiceQuestion e = data.get();
+			e.setTitle(body.getTitle());
+			e.setPoints(body.getPoints());
+			e.setDescription(body.getDescription());
+			e.setCorrectOption(body.getCorrectOption());
+			e.setOptions(body.getOptions());
+			return multiRepo.save(e);
+		}
+		return null;
+	}
+	
 	@PostMapping("/api/exam/{eid}/multi")
 	public MultipleChoiceQuestion createMultiQuestion(@PathVariable("eid") int eid,
 			@RequestBody MultipleChoiceQuestion body) {
@@ -110,6 +155,22 @@ public class ExamService {
 		return null;
 	}
 	
+	@PutMapping("/api/blanks/{id}")
+	public FillInTheBlankQuestion updateBlank(@PathVariable("id") int id, 
+			@RequestBody FillInTheBlankQuestion body) {
+		Optional<FillInTheBlankQuestion> data = blanksRepo.findById(id);
+		
+		if (data.isPresent()) {
+			FillInTheBlankQuestion e = data.get();
+			e.setTitle(body.getTitle());
+			e.setPoints(body.getPoints());
+			e.setDescription(body.getDescription());
+			e.setBlanks(body.getBlanks());
+			return blanksRepo.save(e);
+		}
+		return null;
+	}
+	
 	@PostMapping("/api/exam/{eid}/truefalse")
 	public TrueFalseQuestion createTrueFalseQuestion(@PathVariable("eid") int eid,
 			@RequestBody TrueFalseQuestion body) {
@@ -118,6 +179,22 @@ public class ExamService {
 		if (data.isPresent()) {
 			body.setExam(data.get());
 			return trueFalseRepo.save(body);
+		}
+		return null;
+	}
+	
+	@PutMapping("/api/blanks/{id}")
+	public TrueFalseQuestion updateTrueFalse(@PathVariable("id") int id, 
+			@RequestBody TrueFalseQuestion body) {
+		Optional<TrueFalseQuestion> data = trueFalseRepo.findById(id);
+		
+		if (data.isPresent()) {
+			TrueFalseQuestion e = data.get();
+			e.setTitle(body.getTitle());
+			e.setPoints(body.getPoints());
+			e.setDescription(body.getDescription());
+			e.setIsTrue(body.getIsTrue());
+			return trueFalseRepo.save(e);
 		}
 		return null;
 	}
