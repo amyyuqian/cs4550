@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdev.models.Lesson;
+import com.example.webdev.models.Widget;
 import com.example.webdev.models.Assignment;
 import com.example.webdev.repositories.LessonRepository;
 import com.example.webdev.repositories.AssignmentRepository;
@@ -41,7 +43,7 @@ public class AssignmentService {
 	}
 	
 	@GetMapping("/api/lesson/{lid}/assignment")
-	public List<Assignment> findAssignmentsByLesson(@PathVariable("lid") int lid) {
+	public List<Widget> findAssignmentsByLesson(@PathVariable("lid") int lid) {
 		Optional<Lesson> data = lessonRepo.findById(lid);
 		
 		if (data.isPresent()) {
@@ -67,5 +69,19 @@ public class AssignmentService {
 	@DeleteMapping("/api/assignment/{id}")
 	public void deleteAssignment(@PathVariable("id") int id) {
 		assignRepo.deleteById(id);
+	}
+	
+	@PutMapping("/api/assignment/{id}")
+	public Assignment updateAssignment(@PathVariable("id") int id, @RequestBody Assignment body) {
+		Optional<Assignment> data = assignRepo.findById(id);
+		
+		if (data.isPresent()) {
+			Assignment a = data.get();
+			a.setPoints(body.getPoints());
+			a.setText(body.getText());
+			a.setTitle(body.getTitle());
+			return assignRepo.save(a);
+		}
+		return null;
 	}
 }

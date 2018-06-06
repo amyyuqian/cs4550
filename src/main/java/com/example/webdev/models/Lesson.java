@@ -44,24 +44,22 @@ public class Lesson {
 	public void setWidgets(List<Widget> widgets) {
 		this.widgets = widgets;
 	}
-	public List<Assignment> getAssignments() {
-		List<Assignment> result = new ArrayList<>();
+	public List<Widget> getAssignments() {
+		List<Widget> result = new ArrayList<>();
 		List<Widget> widgets = this.getWidgets();
 		for (Widget w : widgets) {
 			if (w.getWidgetType() == "assignment") {
-				Assignment a = (Assignment) w;
-				result.add(a);
+				result.add(w);
 			}
 		}
 		return result;
 	}
-	public List<Exam> getExams() {
-		List<Exam> result = new ArrayList<>();
+	public List<Widget> getExams() {
+		List<Widget> result = new ArrayList<>();
 		List<Widget> widgets = this.getWidgets();
 		for (Widget w : widgets) {
 			if (w.getWidgetType() == "exam") {
-				Exam e = (Exam) w;
-				result.add(e);
+				result.add(w);
 			}
 		}
 		return result;

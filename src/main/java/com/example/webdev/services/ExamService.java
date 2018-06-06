@@ -19,6 +19,7 @@ import com.example.webdev.models.Lesson;
 import com.example.webdev.models.MultipleChoiceQuestion;
 import com.example.webdev.models.Question;
 import com.example.webdev.models.TrueFalseQuestion;
+import com.example.webdev.models.Widget;
 import com.example.webdev.repositories.EssayQuestionRepository;
 import com.example.webdev.repositories.ExamRepository;
 import com.example.webdev.repositories.FillInTheBlankQuestionRepository;
@@ -122,7 +123,7 @@ public class ExamService {
 	}
 	
 	@GetMapping("/api/lesson/{lid}/exam")
-	public List<Exam> findExamsByLesson(@PathVariable("lid") int lid) {
+	public List<Widget> findExamsByLesson(@PathVariable("lid") int lid) {
 		Optional<Lesson> data = lRepo.findById(lid);
 		
 		if (data.isPresent()) {
