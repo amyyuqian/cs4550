@@ -114,6 +114,11 @@ public class ExamService {
 		return null;
 	}
 	
+	@DeleteMapping("/api/essay/{id}")
+	public void deleteEssay(@PathVariable("id") int id) {
+		essayRepo.deleteById(id);
+	}
+	
 	@PutMapping("/api/multi/{id}")
 	public MultipleChoiceQuestion updateMulti(@PathVariable("id") int id, 
 			@RequestBody MultipleChoiceQuestion body) {
@@ -141,6 +146,11 @@ public class ExamService {
 			return multiRepo.save(body);
 		}
 		return null;
+	}
+	
+	@DeleteMapping("/api/multi/{id}")
+	public void deleteMulti(@PathVariable("id") int id) {
+		multiRepo.deleteById(id);
 	}
 	
 	@PostMapping("/api/exam/{eid}/blanks")
@@ -171,6 +181,11 @@ public class ExamService {
 		return null;
 	}
 	
+	@DeleteMapping("/api/blanks/{id}")
+	public void deleteBlank(@PathVariable("id") int id) {
+		blanksRepo.deleteById(id);
+	}
+	
 	@PostMapping("/api/exam/{eid}/truefalse")
 	public TrueFalseQuestion createTrueFalseQuestion(@PathVariable("eid") int eid,
 			@RequestBody TrueFalseQuestion body) {
@@ -197,6 +212,11 @@ public class ExamService {
 			return trueFalseRepo.save(e);
 		}
 		return null;
+	}
+	
+	@DeleteMapping("/api/truefalse/{id}")
+	public void deleteTrueFalse(@PathVariable("id") int id) {
+		trueFalseRepo.deleteById(id);
 	}
 	
 	@GetMapping("/api/lesson/{lid}/exam")
